@@ -28,3 +28,5 @@ if __name__ == "__main__":
     print("Be ready to for an exciting adventure")
     print("Driven completly by your decisions")
     start_game()
+    # Simple Text Adventure Game: Section 1 and Section 2
+

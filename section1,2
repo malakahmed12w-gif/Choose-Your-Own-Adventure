@@ -1,0 +1,123 @@
+# Simple Text Adventure Game: Sections 1 to 4
+
+inventory = [
+    "Machete",
+    "Compass",
+    "1 bottle of water",
+    "Flare gun with 1 flare",
+    "Notebook with Zorak notes"
+]
+
+def show_inventory():
+    print("\nYour Inventory:")
+    for item in inventory:
+        print(f"- {item}")
+    print()
+
+def section_4():
+    print("\n--- SECTION 4: Inside the Temple ---")
+    print("You light a torch and step inside. The air is dry and cold.")
+    print("The hallway splits into two paths.")
+
+    while True:
+        print("\nWhich way do you go?")
+        print("A. Left _ a narrow corridor with carvings on the wall")
+        print("B. Right _ a dark tunnel with strange noises")
+        print("Type 'inventory' to check your items.")
+
+        choice = input(">> ").strip().lower()
+
+        if choice == 'a':
+            print("\nYou follow the carved corridor and discover a hidden door.")
+            print("Inside, you find a golden idol, possibly one of Zorak’s treasures!")
+            inventory.append("Golden Idol")
+            break
+        elif choice == 'b':
+            print("\nYou enter the dark tunnel. Suddenly, darts shoot from the walls!")
+            print("You’re hit lightly in the arm. It stings, but you’ll live.")
+            inventory.append("Wounded arm")
+            break
+        elif choice == 'inventory':
+            show_inventory()
+        else:
+            print("Invalid choice. Try again.")
+
+    print("\n(End of Section 4)")
+
+def section_3():
+    print("\n--- SECTION 3: Temple Entrance ---")
+    print("You reach the ruins. Vines cover ancient stone walls.")
+    print("There’s a large door with a strange symbol in the center.")
+
+    while True:
+        print("\nWhat do you do?")
+        print("A. Try to open the door by pushing it")
+        print("B. Examine the symbol closely")
+        print("Type 'inventory' to check your items.")
+
+        choice = input(">> ").strip().lower()
+
+        if choice == 'a':
+            print("\nYou push the door — it moves slightly, but something clicks...")
+            print("A small dart shoots out and misses you by inches. That was close!")
+            section_4()
+            break
+        elif choice == 'b':
+            print("\nYou examine the symbol. It looks like the drawing from your notebook.")
+            if "Notebook with Zorak notes" in inventory:
+                print("You use your notebook to decode the mechanism and safely open the door.")
+            else:
+                print("Without the notebook, you guess the symbol’s meaning. Luckily, you guess correctly.")
+            section_4()
+            break
+        elif choice == 'inventory':
+            show_inventory()
+        else:
+            print("Invalid choice. Try again.")
+
+def section_2(choice):
+    print("\n--- SECTION 2 ---")
+    if choice == 'a':
+        print("You head west, hacking through vines with your machete.")
+        print("Suddenly, you hear rustling in the bushes behind you.")
+        print("You turn around and see glowing eyes... a jungle cat is watching you.")
+        print("You slowly back away and it disappears into the trees.")
+    elif choice == 'b':
+        print("From the treetop, you spot two things:")
+        print("- A large stone structure to the west")
+        print("- Smoke rising from the north")
+        print("You now have a better idea where to go next.")
+    elif choice == 'c':
+        print("You walk back toward a nearby village.")
+        print("An old man offers to guide you to the temple if you give him something in return.")
+        print("You give him your notebook.")
+        inventory.remove("Notebook with Zorak notes")
+        print("The old man agrees and points you toward a safe path.")
+
+    section_3()
+
+def section_1():
+    print("Welcome to The Lost Temple of Zorak!")
+    print("\n--- SECTION 1 ---")
+    print("You land in a jungle. The pilot gives you a map and says:")
+    print('"The temple’s somewhere west. Watch out for traps and creatures."')
+
+    while True:
+        print("\nWhat do you do?")
+        print("A. Go west toward the temple")
+        print("B. Climb a tree to scout the area")
+        print("C. Look around for help")
+        print("Type 'inventory' to check your items.")
+
+        choice = input(">> ").strip().lower()
+
+        if choice in ['a', 'b', 'c']:
+            section_2(choice)
+            break
+        elif choice == 'inventory':
+            show_inventory()
+        else:
+            print("Invalid choice. Try again.")
+
+# Start the game
+section_1()
